@@ -1,9 +1,9 @@
 package de.lv1871;
 
 import de.lv1871.util.OpenCVUtils;
+import de.lv1871.util.OpenCVWindow;
 import de.lv1871.util.ResourceUtils;
 import org.opencv.core.*;
-import org.opencv.highgui.HighGui;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.videoio.VideoCapture;
@@ -23,6 +23,13 @@ public class EyeDetection {
 
         // Connect with camera
         VideoCapture vc = new VideoCapture(0);
+
+        OpenCVWindow window = new OpenCVWindow("EyeDetection");
+        window.onKeyPressed((KeyEvent e) -> {
+            if ("e".equalsIgnoreCase(KeyEvent.getKeyText(e.getKeyCode()))) {
+                System.exit(0);
+            }
+        });
 
         while (true) {
             // Get image from camera
@@ -63,15 +70,8 @@ public class EyeDetection {
                 );
             }
 
-            // Show resulte
-            HighGui.imshow("EyeDetection", videoSource);
-
-            // Exit on 'e' pressed
-            int key = HighGui.waitKey(1);
-            if ("e".equalsIgnoreCase(KeyEvent.getKeyText(key))) {
-                HighGui.destroyAllWindows();
-                System.exit(0);
-            }
+            // Show result
+            window.update(videoSource);
         }
     }
 }
