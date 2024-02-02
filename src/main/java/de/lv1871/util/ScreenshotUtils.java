@@ -18,8 +18,22 @@ public final class ScreenshotUtils {
     }
 
     public static Mat getScreenshotAsMat() {
+        BufferedImage image = getScreenshotAsBufferedImage();
+        return bufferedImageToMat(image);
+    }
+
+    public static Mat getScreenshotOfLeftHalfScreenAsMat() {
+        BufferedImage image = getScreenshotOfLeftHalfScreen();
+        return bufferedImageToMat(image);
+    }
+
+    public static Mat getScreenshotAsMat(Rectangle rectangle) {
+        BufferedImage image = getScreenshotAsBufferedImage(rectangle);
+        return bufferedImageToMat(image);
+    }
+
+    public static Mat bufferedImageToMat(BufferedImage image) {
         try {
-            BufferedImage image = getScreenshotAsBufferedImage();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             ImageIO.write(image, "jpg", byteArrayOutputStream);
             byteArrayOutputStream.flush();
@@ -30,9 +44,20 @@ public final class ScreenshotUtils {
     }
 
     public static BufferedImage getScreenshotAsBufferedImage() {
+        Rectangle screenSize = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
+        return getScreenshotAsBufferedImage(screenSize);
+    }
+
+    public static BufferedImage getScreenshotOfLeftHalfScreen() {
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+        dimension.width = dimension.width / 2;
+        Rectangle screenSize = new Rectangle(dimension);
+        return getScreenshotAsBufferedImage(screenSize);
+    }
+
+    public static BufferedImage getScreenshotAsBufferedImage(Rectangle rectangle) {
         try {
-            Rectangle screenSize = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-            return new Robot().createScreenCapture(screenSize);
+            return new Robot().createScreenCapture(rectangle);
         } catch (AWTException e) {
             throw new RuntimeException(e);
         }
