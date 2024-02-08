@@ -12,6 +12,9 @@ import java.awt.event.KeyEvent;
 
 public class EyeDetection {
 
+    /**
+     * !! Funktioniert nur außerhalb der Citrix-Umgebung !!
+     */
     public static void main(String[] args) {
         OpenCVUtils.initOpenCV();
 

@@ -17,6 +17,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Moorhuhn {
 
+    /**
+     * !! Funktioniert nur außerhalb der Citrix-Umgebung !!
+     */
     public static void main(String[] args) {
         OpenCVUtils.initOpenCV();
         WebDriver driver = SeleniumUtils.initChromeDriver();
