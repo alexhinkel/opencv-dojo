@@ -1,6 +1,11 @@
 package de.lv1871.util;
 
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public final class ResourceUtils {
 
@@ -15,7 +20,8 @@ public final class ResourceUtils {
         }
 
         String absoluteResourcePath = url.getPath();
-        if (absoluteResourcePath.startsWith("/")) {
+        String urlString = url.toString();
+        if (absoluteResourcePath.startsWith("/") && urlString.matches("file:/[a-zA-Z]:/.*")) {
             absoluteResourcePath = absoluteResourcePath.substring(1);
         }
 
