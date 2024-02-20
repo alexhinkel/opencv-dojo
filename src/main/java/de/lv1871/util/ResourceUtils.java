@@ -15,7 +15,8 @@ public final class ResourceUtils {
         }
 
         String absoluteResourcePath = url.getPath();
-        if (absoluteResourcePath.startsWith("/")) {
+        String urlString = url.toString();
+        if (absoluteResourcePath.startsWith("/") && urlString.matches("file:/[a-zA-Z]:/.*")) {
             absoluteResourcePath = absoluteResourcePath.substring(1);
         }
 
