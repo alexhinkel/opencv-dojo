@@ -19,6 +19,10 @@ public class Moorhuhn {
 
     /**
      * !! Funktioniert nur außerhalb der Citrix-Umgebung !!
+     * <p>
+     * Steuerung:
+     * s - Starte den Bot
+     * e - Beenden
      */
     public static void main(String[] args) {
         OpenCVUtils.initOpenCV();
@@ -35,7 +39,7 @@ public class Moorhuhn {
         Actions actions = new Actions(driver);
         int ammo = 10;
 
-        OpenCVWindow window = new OpenCVWindow("EyeDetection");
+        OpenCVWindow window = new OpenCVWindow("Moorhuhn");
         window.onWindowClosed((WindowLEvent) -> driver.close());
         window.onKeyPressed((KeyEvent e) -> {
             if ("e".equalsIgnoreCase(KeyEvent.getKeyText(e.getKeyCode()))) {

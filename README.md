@@ -13,17 +13,34 @@ Folgende Software ist notwendig (außerhalb der Citrix Umgebung):
 ### Inhalt:
 
 * Kamera mit Augenerkennung
+    * EyeDetection.java -> Kann über Main-Methode gestartet werden
 * Moorhuhn Bot (Spielt Moorhuhn automatisch im Chrome Browser)
+    * Moorhuhn.java -> Kann über Main-Methode gestartet werden
+
+### Aufgaben/Ideen:
+
+* Einen eigenen Bot entwickeln
+* Sich mithilfe der Augenerkennung eine virtuelle Brille aufsetzen
+* Den Moorhuhn Bot verbessern
+* Demos online ausprobieren
+* (!schwierig!) Teamsfilter nachbauen (Profil erkennen und Hintergrund verschwimmen lassen)
+
+### Bildbearbeitung
+
+Mithilfe der Klasse ImgProc können Bilder bearbeitet werden (Text einfügen, Formen einfügen, Schwarz/Weis-Filter, usw.)
 
 ### Anleitung: Eigenes Bilderkennungs Modell trainieren
 
-! Beim ausführen jeder Batch-Datei den `MODEL_NAME`-Parameter innerhalb der Datei prüfen !
+! Beim ausführen jeder Batch-Datei und von GenerateTrainingDataHelper.java den `MODEL_NAME`-Parameter innerhalb der
+Datei prüfen !
 
 1. `./opencv_trainer/00_create_new_model.bat` Erstellt Verzeichnishierarchie für neues Modell
-2. `./opencv_trainer/%MODEL_NAME%/pos` Mit Bildern befüllen, die Objekte enthalten, welche von der Bilderkennung
-   identifiziert werden sollen. <p>
-   `./opencv_trainer/%MODEL_NAME%/neg` Mit Bildern befüllen, die **keine** Objekte enthalten, welche von der
-   Bilderkennung identifiziert werden sollen.
+2. GenerateTrainingDataHelper.java starten und Traningsdaten erstellen:
+    * Drücke 'p' wenn im angezeigten Bild ein Objekt enthalten ist, dass von der Bilderkennung erkannt werden soll (
+      positive Trainingsdaten)
+    * Drücke 'n' wenn im angezeigten Bild **kein** Objekt enthalten ist, dass von der Bilderkennung erkannt werden
+      soll (negative Trainingsdaten)
+    * Drücke 'e' um zu beenden
 3. `./opencv_trainer/01_start_opencv_annotation.bat` Markierung der Objekte in den positiv Bildern
 4. `./opencv_trainer/02_start_opencv_createsamples.bat` Erstellt binäre Eingabedatei für den letzten Schritt, das
    eigentliche Training. Parameter innerhalb der Datei prüfen.
@@ -34,3 +51,4 @@ Folgende Software ist notwendig (außerhalb der Citrix Umgebung):
 * [OpenCV](https://opencv.org)
 * [Cascade Classifier](https://medium.com/swlh/haar-cascade-classifiers-in-opencv-explained-visually-f608086fc42c)
 * [Tensor Flow Demos](https://www.tensorflow.org/js/demos)
+* [Datasets](https://cocodataset.org/#home)

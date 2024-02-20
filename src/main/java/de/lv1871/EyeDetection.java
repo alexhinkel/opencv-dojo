@@ -57,7 +57,7 @@ public class EyeDetection {
              */
             cc.detectMultiScale(videoSource, detectedEyes,
                     1.02,
-                    6,
+                    15,
                     0,
                     new Size(10, 10),
                     new Size(35, 35));

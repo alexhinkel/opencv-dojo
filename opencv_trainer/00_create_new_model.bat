@@ -1,4 +1,4 @@
-set MODEL_NAME=models
+set MODEL_NAME=model
 
 mkdir %MODEL_NAME%\pos
 mkdir %MODEL_NAME%\neg

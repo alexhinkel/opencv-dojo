@@ -16,9 +16,9 @@ public class GenerateTrainingDataHelper {
     /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///
     /// Set your own model name and URL             ///
     /// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ///
-    private static final String MODEL_NAME = "moorhuhn";
+    private static final String MODEL_NAME = "model";
     private static final boolean BROWSER_MODE = false;
-    private static final String URL = "https://www.1001spiele.de/aktion/moorhuhn-remake";
+    private static final String URL = "https://html5.gamedistribution.com/8198902ff8ae4fd7a29208013eb9d072/";
 
 
     private static final String POSITIVE_TRAINING_DATA_PATH = "opencv_trainer/" + MODEL_NAME + "/pos/";
@@ -68,7 +68,8 @@ public class GenerateTrainingDataHelper {
                 byte[] scrFile = SeleniumUtils.getScreenshot(driver, OutputType.BYTES);
                 screenshot.set(OpenCVUtils.loadImage(scrFile, Imgcodecs.IMREAD_UNCHANGED));
             } else {
-                screenshot.set(ScreenshotUtils.getScreenshotAsMat());
+                // screenshot.set(ScreenshotUtils.getScreenshotAsMat());
+                screenshot.set(ScreenshotUtils.getScreenshotOfLeftHalfScreenAsMat());
             }
 
             window.update(screenshot.get());
